@@ -56,3 +56,31 @@ Update the main.py
 Now run python main.py  and we will see in artifacts folder data unzip and runnig all process . 
 
 -------------------------------------------------------------------
+config.yaml file --->>>>> prepare_base_model added 
+
+
+Research folder ---> prepare_base_model file ----> create  
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------
+
+entity folder --> config_entity.py   ---> Add ---> class PrepareBaseModelConfig
+
+In config folder ---> configuration.py ---> add ---> 
+from src.cnnClassifier.entity.config_entity import PrepareBaseModelConfig
+
+
+In config folder ---> configuration.py ---> add ---> this function 
+def get_prepare_base_model_config(self) 
+
+
+In components folder ---> create file 'prepare_base_model.py' ---> And add data from prepare_base_model.ipynb 
+
+
+
+folder Pipeline ---> create new file 'stage_02_prepare_base_model.py' 
+
+For run this , we have to add this stage_02 in main.py 
+from src.cnnClassifier.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
+
+--------------------------------------------------------------
