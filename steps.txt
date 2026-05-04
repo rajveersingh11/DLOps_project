@@ -84,3 +84,64 @@ For run this , we have to add this stage_02 in main.py
 from src.cnnClassifier.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
 
 --------------------------------------------------------------
+
+
+--------------------------------------------------------------
+
+Now add prepare_callbacks in config.yaml 
+
+Now create file '03_prepare_callbacks.ipynb' in 'research' folder ---> and write in this.
+
+
+Now add prepare_callbacks_config dataclass into 'entity' folder ---> 'config_entity.py' 
+
+
+Now add 'get_prepare_callback_config' function  into config folder in 'configuration.py' 
+
+
+Now go to 'components' folder ---> create file 'prepare_callbacks.py' 
+
+---------------------------------------------------------------
+
+Add trainign directory in config.yaml file 
+
+Now create 'training.ipynb' file into research folder . 
+
+Now go to entity folder ---> config_entity file ---> add TrainingConfig Class  . 
+
+
+Now in config folder ----> configuration.py file ---> add get_training_config function . 
+
+
+Now in components folder ---> create training.py 
+
+
+Now in Pipeline folder ----> create stage_03_training.py 
+
+Now run python main.py 
+
+------------------------------------------------------
+
+ow create a new file '05_model_evaluation.ipynb'  in research folder . 
+
+### Now we will see that 'score.json' file has been created where we can see our total loss and accuracy of our training model . 
+We can delete this output_result.json 
+
+
+Now in entity folder ---> config_entity file we will add EvaluationConfig class there . 
+
+
+Now in config folder ---> configuration.py we will add get_validation_config function . 
+and we will import Pathlib library also. 
+
+Now in 'components' folder --> create ---> 'evaluation.py' 
+
+Now in pipeline' folder ---> create ---> 'stage_04_evaluation.py' 
+
+
+Now we will add STAGE_NAME = "Evaluation stage" in main.py 
+
+
+Now open the terminal and write python main.py 
+
+----------------------------------------------------
