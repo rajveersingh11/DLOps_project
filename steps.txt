@@ -145,3 +145,40 @@ Now we will add STAGE_NAME = "Evaluation stage" in main.py
 Now open the terminal and write python main.py 
 
 ----------------------------------------------------
+-----------------------------------------------------
+
+Now open dvc.yaml and write all scripting . 
+
+Now open the terminal and write 
+
+dvc init 
+
+when we execute this command it will generate .dvcfolder  
+
+Now for excute the command step by step from dvc.yaml we have to write this n our terminal . 
+
+dvc repro 
+
+
+Now we will see all logs in dvc.lock 
+
+Now open the terminal and write 
+
+dvc dag 
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+
+Now in 'Pipeline' folder --> create file ---> 'predict.py' and write all code .
+
+Now create app.py file ---> write all code .
+
+In templates folder ---> index.html --> write code ..
+
+Now open the terminal and write python app.py 
+
+Now click on upload and select image and click on predict ---> It will return result . 
+
+--------------------------------------------
