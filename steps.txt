@@ -182,3 +182,125 @@ Now open the terminal and write python app.py
 Now click on upload and select image and click on predict ---> It will return result . 
 
 --------------------------------------------
+
+Agenda :::  How to deploy our dlops project on AWS 
+
+
+Now we will Deploy this project on AWS 
+
+Create DockerFile 
+
+Now for CI/CD  we have to create main.yaml in this directory . 
+
+.github/workflows/main.yaml 
+
+And add all scripting there . 
+
+step-1 
+
+Now open AWS  ---> IAM ---> Users ---> New User(Chiken) ---> Attach Policy --->
+
+AmazonEC2ContainerRegistryFullAccess,
+AmazonEC2FullAccess 
+
+Now click on 'Create Users' ---> create Access key with access key id here . 
+
+
+step-2 
+
+AWS Home Console ---> ECR ---> Get Started ----> Create Repository(Private , name=chicken) ----> click on create Repository ----> Copy this repo's URI and save it anywhere.
+
+
+step-3 
+
+AWS Home Console ---> EC2 ---> Server-Name(chicken-machine) ---> o.s.(ubuntu) ---> 
+--------------------------
+Optional- For Production Purpose 
+When we work with the deep learning so for this we have to select GPU Instance of AMI . so we can select 'Deep Learning AMI GPU PyTorch 1.13.1 (Ubuntu 20.04) 2030530' 
+------------------------------
+
+But we will select default for right now . 
+
+Instance type (t2.xlarge) ----> storage(29GB) ---> Launch Instance . 
+
+Now open it's cli and run these commands
+
+----------------------------------------
+sudo apt-get update -y
+
+sudo apt-get upgrade
+
+#required
+
+curl -fsSL https://get.docker.com -o get-docker.sh
+
+sudo sh get-docker.sh
+
+sudo usermod -aG docker ubuntu
+
+newgrp docker
+
+-----------------------------------------
+
+
+step-4 (Configure EC2 as self-hosted runner)
+
+Go to github ---> Settings ----> Actions ---> Runners ----> New self-hosted runner ----> select Linux ---> and copy their scripts and paste it into our ec2 server one by one . 
+
+
+Enter the Name of runner group : Press Enter
+Enter the name of runner: self-hosted 
+Now you have to press enter whenever we are seeing Setting saved message . 
+
+Now again we have to run this command . 
+
+./run.sh 
+
+
+Now we will see that connected to github and listen all the jobs . 
+
+
+Now In Github ---> Runner ---> we will see 'idle' status there . 
+
+
+Now in ec2 server press cntrl+c for stop the process then we will see in our github in  runner the status is offline now . 
+
+Now again if you want to run this so for this you have to do this . 
+
+./run.sh 
+
+Now it is working perfectly . 
+
+Now we have to add our secrets so for this . 
+
+github ---> settings ----> Action ---> Secrets and variables ----> New Repository Secret . 
+
+AWS_ACCESS_KEY_ID :
+AWS_SECRET_ACCESS_KEY:
+AWS_REGION : ap-south-1
+AWS_ECR_LOGIN_URI : demo(this will come from ECR's URI)>>  566373416292.dkr.ecr.ap-south-1.amazonaws.com
+
+ECR_REPOSITORY_NAME : chicken
+
+--------------------------------------------------------------------------------
+
+Now upload all the code to the github 
+
+Now github ---> Actions ---> Now we will see 
+
+Continous Integration ---> continous deloyment . 
+
+
+Now go to our ec2 server ---> edit inboud rules(8080)
+
+<public_ip>:8080
+
+
+-------------------------------------------------------
+
+
+Delete resoueces and services 
+
+(1). Delete EC2 Instance 
+(2). Delete ECR Repository 
+(3). Delete User from IAM Role 
